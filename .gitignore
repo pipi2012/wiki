@@ -1,1 +1,2 @@
-*.pyc\noutput
+noutput/
+.pyc
