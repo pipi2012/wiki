@@ -46,9 +46,12 @@
 <li><a href="#_10">粗体斜体</a></li>
 <li><a href="#_11">列表</a></li>
 <li><a href="#_12">链接</a></li>
-<li><a href="#_13">插入图片</a></li>
+<li><a href="#_13">图片</a></li>
 <li><a href="#_14">分割线</a></li>
-<li><a href="#_15">段落</a></li>
+<li><a href="#_15">段落</a><ul>
+<li><a href="#-">-----------</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -103,32 +106,51 @@
 
 
 <h2 id="_11">列表</h2>
+<p>无序列表</p>
 <ul>
 <li>*a</li>
-<li>*b</li>
-<li>*c</li>
-<li>-A</li>
-<li>-B</li>
-<li>-C</li>
-<li>+1</li>
-<li>+2</li>
-<li>+3</li>
+<li>-b</li>
+<li>
+<p>+c</p>
+<ul>
+<li>*a</li>
+<li>-b</li>
+<li>+c</li>
 </ul>
+</li>
+</ul>
+<p>有序列表</p>
+<ol>
+<li>第一项</li>
+<li>
+<p>第二项</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+</ol>
+</li>
+</ol>
 <h2 id="_12">链接</h2>
-<p><a href="http://www.baidu.com">baidu</a></p>
-<div class="hlcode"><pre><span class="p">[</span><span class="n">baidu</span><span class="p">](</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com)</span>
-<span class="p">[</span><span class="n">text</span><span class="p">](</span><span class="n">url</span><span class="p">)</span>
+<p>inline
+<a href="http://www.baidu.com">baidu</a></p>
+<p>reference</p>
+<div class="hlcode"><pre><span class="kr">inline</span>
+<span class="p">[</span><span class="n">baidu</span><span class="p">](</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com)</span>
+<span class="n">reference</span>
+<span class="p">[</span><span class="n">baidu</span><span class="p">]</span><span class="o">:</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com</span>
 </pre></div>
 
 
-<h2 id="_13">插入图片</h2>
+<h2 id="_13">图片</h2>
 <div class="hlcode"><pre><span class="o">!</span><span class="p">[</span><span class="n">alt_text</span><span class="p">](</span><span class="n">imgurl</span><span class="p">)</span>
 </pre></div>
 
 
 <h2 id="_14">分割线</h2>
 <hr />
-<div class="hlcode"><pre><span class="o">***</span>
+<hr />
+<div class="hlcode"><pre><span class="o">***</span> 
+<span class="o">---</span>
 </pre></div>
 
 
@@ -137,8 +159,10 @@
 </pre></div>
 
 
+<h6 id="-">-----------</h6>
 <blockquote>
-<p>add time 2016-01-25</p>
+<p>文章修改记录
+add time 2016-01-25</p>
 </blockquote>
     </div>
 
