@@ -38,21 +38,22 @@
 </pre></div>
 
 
-<h2 id="git">git仓库介绍</h2>
+<h2 id="git">git分区</h2>
+<h3 id="_3">三大分区</h3>
 <div class="hlcode"><pre><span class="n">working</span> <span class="n">tree</span><span class="o">--</span><span class="err">工作区</span>  
 <span class="n">index</span> <span class="n">file</span><span class="o">--</span><span class="err">索引文件（暂存区）</span>  
 <span class="n">HEAD</span><span class="err">（</span><span class="n">specified</span> <span class="n">tree</span><span class="err">）</span><span class="o">--</span><span class="err">提交后仓库</span>
 </pre></div>
 
 
-<h3 id="_3">不同区文件差别比较</h3>
+<h3 id="_4">不同区文件差别比较</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">diff</span>    <span class="c1">//working tree与index file差别</span>
 <span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">cached</span>   <span class="c1">//查看index file与commit差别</span>
 <span class="n">git</span> <span class="n">diff</span> <span class="n">HEAD</span>  <span class="c1">//查看working tree和commit差别</span>
 </pre></div>
 
 
-<h2 id="_4">本地仓库操作</h2>
+<h2 id="_5">本地仓库操作</h2>
 <h3 id="indexstage">工作区文件添加索引区index（暂存区stage）</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="nx">git</span> <span class="nb">add</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>
 </pre></div>
@@ -79,7 +80,7 @@
 </pre></div>
 
 
-<h3 id="_5">单步版本回退</h3>
+<h3 id="_6">单步版本回退</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">^</span>  <span class="c1">//一步回退</span>
 <span class="err">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">^^</span>  <span class="c1">//两步回退</span>
 <span class="err">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">^^^</span>  <span class="c1">//三步回退</span>
@@ -87,14 +88,14 @@
 </pre></div>
 
 
-<h3 id="_6">工作区修改文件撤销</h3>
+<h3 id="_7">工作区修改文件撤销</h3>
 <div class="hlcode"><pre><span class="nx">git</span> <span class="nx">checkout</span> <span class="o">--</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>  <span class="c1">//工作区检出文件</span>
 <span class="mi">1</span><span class="err">）</span><span class="nb">file</span><span class="err">自动修改后，还没有放到暂存区，使用撤销修改就回到和版本库一模一样的状态。</span>
 <span class="mi">2</span><span class="err">）</span><span class="nb">file</span><span class="err">修改后已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。</span>
 </pre></div>
 
 
-<h3 id="_7">撤销重置</h3>
+<h3 id="_8">撤销重置</h3>
 <div class="hlcode"><pre><span class="nx">git</span> <span class="nb">reset</span> <span class="o">--</span><span class="nx">hard</span> <span class="nb">HEAD</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>  <span class="c1">//仅commit区回退</span>
 <span class="nx">git</span> <span class="nb">reset</span> <span class="nb">HEAD</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>  <span class="c1">//仅commit区和暂存区回退，暂存区未提交文件清空，暂存区撤销到和已提交HEAD版本相同</span>
 <span class="err">等价于</span>  <span class="nx">git</span> <span class="nb">reset</span> <span class="o">--</span><span class="nx">mixed</span> <span class="nb">HEAD</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>
@@ -102,14 +103,14 @@
 </pre></div>
 
 
-<h3 id="_8">版本回退</h3>
+<h3 id="_9">版本回退</h3>
 <div class="hlcode"><pre><span class="mi">1</span><span class="err">）如果知道要删掉那些内容的话，直接手动更改去掉那些需要的文件，然后</span><span class="n">add</span><span class="err">添加到暂存区，最后</span><span class="n">commit</span><span class="err">掉。</span>
 <span class="mi">2</span><span class="err">）可以按以前的方法直接恢复到上一个版本。使用</span> <span class="n">git</span> <span class="n">reset</span>  <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">^</span>
 </pre></div>
 
 
-<h2 id="_9">远程仓库操作</h2>
-<h3 id="_10">添加关联远程仓库</h3>
+<h2 id="_10">远程仓库操作</h2>
+<h3 id="_11">添加关联远程仓库</h3>
 <h4 id="1">1）先有本地仓库，再有远程仓库</h4>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/username/repos.git</span>
 <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span> <span class="c1">//把本地库的内容推送到远程 -u参数：会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令</span>
@@ -123,13 +124,13 @@
 </pre></div>
 
 
-<h3 id="_11">查看远程库信息</h3>
+<h3 id="_12">查看远程库信息</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">remote</span> <span class="c1">//查看远程库的信息</span>
 <span class="n">git</span> <span class="n">remote</span> <span class="err">–</span><span class="n">v</span> <span class="c1">//查看远程库的详细信息</span>
 </pre></div>
 
 
-<h3 id="_12">推送分支</h3>
+<h3 id="_13">推送分支</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">&lt;</span><span class="err">远程主机名</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="err">本地分支名</span><span class="o">&gt;:&lt;</span><span class="err">远程分支名</span><span class="o">&gt;</span>
 
 <span class="err">省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支</span><span class="p">(</span><span class="err">通常两者同名</span><span class="p">)</span><span class="err">，如果该远程分支不存在，则会被新建</span>
@@ -149,13 +150,13 @@
 </pre></div>
 
 
-<h3 id="_13">推送策略</h3>
+<h3 id="_14">推送策略</h3>
 <div class="hlcode"><pre><span class="n">master</span><span class="err">分支是主分支，因此要时刻与远程同步。</span>
 <span class="err">一些修复</span><span class="n">bug</span><span class="err">分支不需要推送到远程去，可以先合并到主分支上，然后把主分支</span><span class="n">master</span><span class="err">推送到远程去。</span>
 </pre></div>
 
 
-<h3 id="_14">拉取分支</h3>
+<h3 id="_15">拉取分支</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">pull</span><span class="err">命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并</span>
 <span class="err">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">&lt;</span><span class="err">远程主机名</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="err">远程分支名</span><span class="o">&gt;:&lt;</span><span class="err">本地分支名</span><span class="o">&gt;</span>
 
@@ -164,14 +165,15 @@
 </pre></div>
 
 
-<h3 id="_15">手动建立追踪关系</h3>
+<h3 id="_16">手动建立追踪关系</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">master</span> <span class="n">origin</span><span class="o">/</span><span class="n">next</span>   <span class="c1">//指定master分支追踪origin/next分支</span>
 
 <span class="err">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span>  <span class="c1">//如果当前分支与远程分支存在追踪关系，git pull就可以省略远程分支名</span>
 </pre></div>
 
 
-<h2 id="_16">创建与合并分支</h2>
+<h2 id="_17">分支操作</h2>
+<h3 id="_18">创建与合并分支</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">branch</span>  <span class="c1">//查看分区</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">new_branch</span>  <span class="c1">//创建并切换到新分支new_branch</span>
 <span class="err">等价于</span>
@@ -191,18 +193,18 @@
 </pre></div>
 
 
-<h3 id="_17">分支合并</h3>
+<h3 id="_19">分支合并</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">merge</span> <span class="n">branch_x</span> <span class="c1">//合并指定分支branch_x到当前分支上</span>
 </pre></div>
 
 
-<h3 id="_18">分支策略：</h3>
+<h3 id="_20">分支策略：</h3>
 <div class="hlcode"><pre><span class="mi">1</span><span class="p">)</span><span class="n">master</span><span class="err">主分支应该是非常稳定的，也就是用来发布新版本，一般情况下不允许主分支上干活</span>
 <span class="mi">2</span><span class="p">)</span><span class="err">干活一般情况下在新建的</span><span class="n">dev</span><span class="err">分支上干活，干完后，</span><span class="n">dev</span><span class="err">分支代码稳定后可以合并到主分支</span><span class="n">master</span><span class="err">上来。</span>
 </pre></div>
 
 
-<h2 id="_19">其他</h2>
+<h2 id="_21">其他</h2>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">stash</span>  <span class="c1">//把当前工作现场</span>
 <span class="n">git</span> <span class="n">stash</span> <span class="n">list</span>  <span class="c1">//查看stash列表</span>
 <span class="n">stash</span><span class="err">回复</span>
