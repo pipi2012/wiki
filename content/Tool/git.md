@@ -6,8 +6,8 @@ date: 2016-01-27 00:00
 
 ##配置与初始化
 ###配置全局username，useremail 
-	$ git config --global user.name "pipi2012"
-	$ git config --global user.email "pengxing0829@163.com"
+	$ git config --global user.name "your user name"
+	$ git config --global user.email "your email name"
 
 ###创建版本库（初始化仓库）
 	$ cd gitdir
