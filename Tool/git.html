@@ -25,10 +25,83 @@
     <div class="clearfix"></div>
     <div id="title">git-命令</div>
     <div id="content">
-        <h2 id="_1">配置与初始化</h2>
+        <div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#_1">配置与初始化</a><ul>
+<li><a href="#usernameuseremail">配置全局username，useremail</a></li>
+<li><a href="#git-bash">git bash设置代理</a></li>
+<li><a href="#_2">创建版本库（初始化仓库）</a></li>
+</ul>
+</li>
+<li><a href="#git">git分区</a><ul>
+<li><a href="#_3">三大分区</a></li>
+<li><a href="#_4">不同区文件差别比较</a></li>
+</ul>
+</li>
+<li><a href="#_5">本地仓库操作</a><ul>
+<li><a href="#indexstage">工作区文件添加索引区index（暂存区stage）</a></li>
+<li><a href="#indexstagecommit">索引区index（暂存区stage）文件commit到仓库</a></li>
+<li><a href="#git-show-the-working-tree-status">查看git库状态 Show the working tree status</a></li>
+<li><a href="#commit">查看commit版本记录</a></li>
+<li><a href="#head">重置head版本/版本回退</a></li>
+<li><a href="#_6">单步版本回退</a></li>
+<li><a href="#_7">工作区修改文件撤销</a></li>
+<li><a href="#_8">撤销重置</a></li>
+<li><a href="#_9">版本回退</a></li>
+</ul>
+</li>
+<li><a href="#_10">远程仓库操作</a><ul>
+<li><a href="#_11">添加关联远程仓库</a><ul>
+<li><a href="#1">1）先有本地仓库，再有远程仓库</a></li>
+<li><a href="#2">2）先有远程仓库，再有本地仓库</a></li>
+<li><a href="#3-gh-pagesmaster">3) 同目录远程gh-pages分支与master建立</a></li>
+<li><a href="#4">4)远程提交</a></li>
+</ul>
+</li>
+<li><a href="#_12">查看远程库信息</a></li>
+<li><a href="#_13">推送分支</a></li>
+<li><a href="#_14">推送策略</a></li>
+<li><a href="#_15">拉取分支</a></li>
+<li><a href="#_16">手动建立追踪关系</a></li>
+</ul>
+</li>
+<li><a href="#_17">分支操作</a><ul>
+<li><a href="#_18">创建与合并分支</a></li>
+<li><a href="#git-branch">git branch系列操作</a></li>
+<li><a href="#_19">分支合并</a></li>
+<li><a href="#_20">分支策略：</a></li>
+</ul>
+</li>
+<li><a href="#_21">其他</a><ul>
+<li><a href="#stash">Stash工作现场</a></li>
+<li><a href="#git-ssh">Git ssh</a></li>
+</ul>
+</li>
+<li><a href="#_22">问题</a><ul>
+<li><a href="#githuberror-src-refspec-master-does-not-match-any">github上传时出现error: src refspec master does not match any解决办法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1">配置与初始化</h2>
 <h3 id="usernameuseremail">配置全局username，useremail</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="s">&quot;your user name&quot;</span>
 <span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="s">&quot;your email name&quot;</span>
+</pre></div>
+
+
+<h3 id="git-bash">git bash设置代理</h3>
+<p>查看已有配置</p>
+<div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">list</span>
+</pre></div>
+
+
+<p>设置代理</p>
+<div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">http</span><span class="p">.</span><span class="n">proxy</span> <span class="n">http</span><span class="o">:</span><span class="c1">//proxyname:port</span>
+</pre></div>
+
+
+<p>删除代理设置</p>
+<div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="o">--</span><span class="n">unset</span> <span class="n">http</span><span class="p">.</span><span class="n">proxy</span>
 </pre></div>
 
 
@@ -124,6 +197,39 @@
 </pre></div>
 
 
+<h4 id="3-gh-pagesmaster">3) 同目录远程gh-pages分支与master建立</h4>
+<div class="hlcode"><pre><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="err">分支</span>
+<span class="n">mkdir</span> <span class="n">targetdir</span>
+<span class="n">cd</span> <span class="n">targetdir</span>
+<span class="n">mkdir</span> <span class="n">output</span>
+<span class="n">cd</span> <span class="n">output</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">init</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/username/repos.git</span>
+
+<span class="err">服务端已有</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="err">情况，先同步已有分支</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span> <span class="err">或</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">:</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+
+<span class="err">添加或修改文件，提交项目</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;commit message&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span> <span class="err">（第一次使用</span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="err">）</span>
+
+<span class="n">master</span><span class="err">分支</span>
+<span class="n">cd</span> <span class="p">..</span>
+<span class="n">git</span> <span class="n">init</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span> <span class="err">或</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span><span class="o">:</span><span class="n">master</span>
+<span class="err">添加或修改文件，提交项目</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;commit message&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span> <span class="err">（第一次使用</span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span><span class="err">）</span>
+</pre></div>
+
+
+<h4 id="4">4)远程提交</h4>
+<div class="hlcode"><pre><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;commit message&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+
+
 <h3 id="_12">查看远程库信息</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">remote</span> <span class="c1">//查看远程库的信息</span>
 <span class="n">git</span> <span class="n">remote</span> <span class="err">–</span><span class="n">v</span> <span class="c1">//查看远程库的详细信息</span>
@@ -205,6 +311,7 @@
 
 
 <h2 id="_21">其他</h2>
+<h3 id="stash">Stash工作现场</h3>
 <div class="hlcode"><pre><span class="n">git</span> <span class="n">stash</span>  <span class="c1">//把当前工作现场</span>
 <span class="n">git</span> <span class="n">stash</span> <span class="n">list</span>  <span class="c1">//查看stash列表</span>
 <span class="n">stash</span><span class="err">回复</span>
@@ -213,10 +320,35 @@
 </pre></div>
 
 
+<h3 id="git-ssh">Git ssh</h3>
+<div class="hlcode"><pre><span class="mi">1</span><span class="err">）检查本机的</span><span class="n">ssh</span><span class="err">密钥</span>
+<span class="err">$</span> <span class="n">cd</span> <span class="o">~/</span><span class="p">.</span> <span class="n">ssh</span>  <span class="c1">//如果提示：No such file or directory 说明你是第一次使用git</span>
+<span class="mi">2</span><span class="err">）生成新的</span><span class="n">SSH</span> <span class="n">Key</span><span class="err">：</span>
+<span class="err">$</span> <span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="s">&quot;邮件地址@youremail.com&quot;</span>
+<span class="err">如不支持邮箱，则改用</span>
+<span class="err">$</span> <span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>
+<span class="err">一直回车生成密钥对，最后得到：</span><span class="n">id_rsa</span><span class="err">和</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span><span class="err">两个文件</span>
+<span class="mi">3</span><span class="err">）</span><span class="n">git</span><span class="err">添加密钥</span>
+<span class="err">登陆</span><span class="n">github</span><span class="err">系统。点击右上角的</span> <span class="n">Account</span> <span class="n">Settings</span><span class="o">--&gt;</span><span class="n">SSH</span> <span class="n">Public</span> <span class="n">keys</span><span class="o">--&gt;</span> <span class="n">add</span> <span class="n">another</span> <span class="n">public</span> <span class="n">keys</span>
+<span class="err">把你本地生成的公钥（</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span><span class="err">文件内容）复制到里面（</span><span class="n">key</span><span class="err">文本框中），</span> <span class="err">点击</span> <span class="n">add</span> <span class="n">key</span><span class="err">保存</span>
+<span class="mi">4</span><span class="err">）测试</span>
+<span class="err">$</span> <span class="n">ssh</span> <span class="o">-</span><span class="n">T</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="err">出现</span><span class="n">You</span><span class="err">&#39;</span><span class="n">ve</span> <span class="n">successfully</span> <span class="n">authenticated</span><span class="p">,</span> <span class="n">but</span> <span class="n">GitHub</span> <span class="n">does</span> <span class="n">not</span> <span class="n">provide</span> <span class="n">shell</span> <span class="n">access</span><span class="p">.</span><span class="err">则表示添加成功</span>
+</pre></div>
+
+
+<h2 id="_22">问题</h2>
+<h3 id="githuberror-src-refspec-master-does-not-match-any">github上传时出现error: src refspec master does not match any解决办法</h3>
+<div class="hlcode"><pre><span class="err">错误的原因是：目录中没有文件，空目录是不能提交上去的</span>
+<span class="err">编辑项目后，重新提交后即可</span>
+</pre></div>
+
+
 <p>------------</p>
 <blockquote>
 <p>文章修改记录<br />
-add time 2016-01-27</p>
+add time 2016-01-27<br />
+update time 2016-02-16</p>
 </blockquote>
     </div>
 
