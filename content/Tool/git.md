@@ -1,13 +1,27 @@
 ---
 title: "git-命令"
 layout: page
-date: 2016-01-27 00:00
+date: 2016-01-27 14:00
 ---
+[TOC]
 
 ##配置与初始化
 ###配置全局username，useremail 
 	$ git config --global user.name "your user name"
 	$ git config --global user.email "your email name"
+
+###git bash设置代理
+查看已有配置
+
+	$ git config --list
+
+设置代理
+
+	$ git config --global http.proxy http://proxyname:port
+
+删除代理设置
+
+	$ git config --global --unset http.proxy
 
 ###创建版本库（初始化仓库）
 	$ cd gitdir
@@ -73,6 +87,35 @@ date: 2016-01-27 00:00
 	建立远程仓库
 	git clone https://github.com/username/repos.git  //克隆远程仓库到本地仓库
 
+####3) 同目录远程gh-pages分支与master建立
+	gh-pages分支
+	mkdir targetdir
+	cd targetdir
+	mkdir output
+	cd output/
+	git init
+	git checkout -b gh-pages
+	git remote add origin https://github.com/username/repos.git
+
+	服务端已有gh-pages情况，先同步已有分支
+	git pull origin gh-pages 或 git pull origin gh-pages:gh-pages
+
+	添加或修改文件，提交项目
+	git add -A && git commit -m "commit message"
+	git push origin gh-pages （第一次使用git push -u origin gh-pages）
+
+	master分支
+	cd ..
+	git init
+	git pull origin master 或 git pull origin master:master
+	添加或修改文件，提交项目
+	git add -A && git commit -m "commit message"
+	git push origin master （第一次使用git push -u origin master）
+
+####4)远程提交
+	git add -A && git commit -m "commit message"
+	git push origin master
+
 ###查看远程库信息
 	git remote //查看远程库的信息
 	git remote –v //查看远程库的详细信息
@@ -136,12 +179,34 @@ date: 2016-01-27 00:00
 	2)干活一般情况下在新建的dev分支上干活，干完后，dev分支代码稳定后可以合并到主分支master上来。
 
 ##其他
+###Stash工作现场
 	git stash  //把当前工作现场
 	git stash list  //查看stash列表
 	stash回复
 	1）git stash apply恢复，恢复后，stash内容并不删除，你需要使用命令git stash drop来删除。
 	2）另一种方式是使用git stash pop,恢复的同时把stash内容也删除了。
+###Git ssh
+
+	1）检查本机的ssh密钥
+	$ cd ~/. ssh  //如果提示：No such file or directory 说明你是第一次使用git
+	2）生成新的SSH Key：
+	$ ssh-keygen -t rsa -C "邮件地址@youremail.com"
+	如不支持邮箱，则改用
+	$ ssh-keygen -t rsa
+	一直回车生成密钥对，最后得到：id_rsa和id_rsa.pub两个文件
+	3）git添加密钥
+    登陆github系统。点击右上角的 Account Settings-->SSH Public keys--> add another public keys
+	把你本地生成的公钥（id_rsa.pub文件内容）复制到里面（key文本框中）， 点击 add key保存
+	4）测试
+	$ ssh -T git@github.com
+	出现You've successfully authenticated, but GitHub does not provide shell access.则表示添加成功
+
+##问题
+###github上传时出现error: src refspec master does not match any解决办法
+	错误的原因是：目录中没有文件，空目录是不能提交上去的
+	编辑项目后，重新提交后即可
 
 \------------
 > 文章修改记录  
-> add time 2016-01-27
+> add time 2016-01-27  
+> update time 2016-02-16
