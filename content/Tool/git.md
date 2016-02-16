@@ -202,7 +202,8 @@ date: 2016-01-27 14:00
 	出现You've successfully authenticated, but GitHub does not provide shell access.则表示添加成功
 
 ##问题
-###github上传时出现error: src refspec master does not match any解决办法
+###error: src refspec master does not match any
+	github上传时出现error: src refspec master does not match any解决办法
 	错误的原因是：目录中没有文件，空目录是不能提交上去的
 	编辑项目后，重新提交后即可
 
