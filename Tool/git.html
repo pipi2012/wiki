@@ -25,7 +25,61 @@
     <div class="clearfix"></div>
     <div id="title">git-命令</div>
     <div id="content">
-        <h2 id="_1">配置与初始化</h2>
+        <div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#_1">配置与初始化</a><ul>
+<li><a href="#usernameuseremail">配置全局username，useremail</a></li>
+<li><a href="#git-bash">git bash设置代理</a></li>
+<li><a href="#_2">创建版本库（初始化仓库）</a></li>
+</ul>
+</li>
+<li><a href="#git">git分区</a><ul>
+<li><a href="#_3">三大分区</a></li>
+<li><a href="#stage">增加Stage好处</a></li>
+<li><a href="#_4">不同区文件差别比较</a></li>
+</ul>
+</li>
+<li><a href="#_5">查看日志</a><ul>
+<li><a href="#_6">查看提交历史日志</a></li>
+<li><a href="#_7">查看命令历史日志</a></li>
+</ul>
+</li>
+<li><a href="#_8">本地仓库操作</a><ul>
+<li><a href="#_9">工作树和索引的状态查看</a></li>
+<li><a href="#indexstage">工作区文件添加索引区index（暂存区stage）</a></li>
+<li><a href="#indexstagecommit">索引区index（暂存区stage）文件commit到仓库</a></li>
+<li><a href="#_10">版本回退</a></li>
+<li><a href="#head">重置head版本/版本回退</a></li>
+<li><a href="#_11">单步版本回退</a></li>
+<li><a href="#_12">工作区修改文件撤销</a></li>
+<li><a href="#_13">撤销重置</a></li>
+<li><a href="#_14">文件检出</a></li>
+<li><a href="#_15">版本回退</a></li>
+</ul>
+</li>
+<li><a href="#_16">远程仓库操作</a><ul>
+<li><a href="#_17">添加关联远程仓库</a><ul>
+<li><a href="#1">1）先有本地仓库，再有远程仓库</a></li>
+<li><a href="#2">2）先有远程仓库，再有本地仓库</a></li>
+</ul>
+</li>
+<li><a href="#_18">查看远程库信息</a></li>
+<li><a href="#_19">推送分支</a></li>
+<li><a href="#_20">推送策略</a></li>
+<li><a href="#_21">拉取分支</a></li>
+<li><a href="#_22">手动建立追踪关系</a></li>
+</ul>
+</li>
+<li><a href="#_23">分支操作</a><ul>
+<li><a href="#_24">分支命令</a></li>
+<li><a href="#git-branch">git branch系列操作</a></li>
+<li><a href="#_25">分支合并</a></li>
+<li><a href="#_26">分支策略：</a></li>
+</ul>
+</li>
+<li><a href="#_27">其他</a></li>
+</ul>
+</div>
+<h2 id="_1">配置与初始化</h2>
 <h3 id="usernameuseremail">配置全局username，useremail</h3>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="s">&quot;pipi2012&quot;</span>
 <span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="s">&quot;pengxing0829@163.com&quot;</span>
